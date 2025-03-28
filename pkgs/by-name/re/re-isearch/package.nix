@@ -7,14 +7,14 @@
   libnsl,
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation (finalAttr: {
   pname = "re-Isearch";
-  version = "unstable-2022-03-24";
+  version = "2.20220925.4.0a";
 
   src = fetchFromGitHub {
     owner = "re-Isearch";
     repo = "re-Isearch";
-    rev = "e5953ea6c84285283be3689df7065908369cdbaf";
+    tag = "e5953ea6c84285283be3689df7065908369cdbaf";
     sha256 = "sha256-D0PDqlWzIOHqdS2MlNzR2T5cyhiLcFlf30v6eFokoRQ=";
   };
 
@@ -51,10 +51,10 @@ stdenv.mkDerivation {
     cp ../lib/*.so $out/lib/
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Novel multimodal search and retrieval engine";
     homepage = "https://github.com/re-Isearch/";
-    license = licenses.asl20;
-    maintainers = [ maintainers.astro ];
+    license = lib.licenses.asl20;
+    maintainers = [ lib.maintainers.astro ] ++ lib.teams.ngi.members;
   };
-}
+})
