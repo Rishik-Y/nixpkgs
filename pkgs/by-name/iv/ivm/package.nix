@@ -12,14 +12,14 @@
   ncurses,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttr: {
   pname = "ivm";
   version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "inko-lang";
     repo = "ivm";
-    rev = "v${version}";
+    rev = "v${finalAttr.version}";
     hash = "sha256-pqqUvHK6mPrK1Mir2ILANxtih9OrAKDJPE0nRWc5JOY=";
   };
 
@@ -61,4 +61,4 @@ rustPlatform.buildRustPackage rec {
     platforms = lib.platforms.unix;
     mainProgram = "ivm";
   };
-}
+})
